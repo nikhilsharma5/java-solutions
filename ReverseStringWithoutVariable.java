@@ -13,7 +13,7 @@ public class ReverseStringWithoutVariable {
 	public static void main(String[] args) {
 		String str = "something";
 		try {for (int j = 0; j < str.length(); j++) {
-			str = str.substring(1, str.length()+5 - j) + str.substring(0, 1)
+			str = str.substring(1, str.length() - j) + str.substring(0, 1)
 					+ str.substring(str.length() - j, str.length());
 		}
 		System.out.println("Reversed String : " + str);
