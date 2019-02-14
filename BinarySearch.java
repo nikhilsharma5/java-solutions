@@ -9,38 +9,25 @@
 	 *            the arr
 	 * @return true, if successful
 	 */
-	public static boolean binarySearch(Integer[] arr) {
-		int x = 99;
-		boolean isFound = false;
-		Integer[] sub;
+	private static boolean binarySearch( Integer[] array, int element, int left, int right ) {
+        if ( left > right ) {
+            return false;
+        }
 
-		if (arr.length == 0) {
-			System.out.println("Empty Array");
-		} else if (arr.length == 1) {
-			if (x == arr[0]) {
-				isFound = true;
-				System.out.println("Integer found : " + x);
-			} else
-				System.out.println("Integer not found in given Array");
-		} else {
-			mean = arr.length / 2;
-			if (x == arr[mean]) {
-				System.out.println("Integer found at: " + mean);
-			} else if (x < arr[mean]) {
-				if (mean == 1) {
-					sub = Arrays.copyOfRange(arr, 0, mean);
-					binarySearch(sub);
-				} else {
-					sub = Arrays.copyOfRange(arr, 0, mean - 1);
-					binarySearch(sub);
-				}
-			} else if (x > arr[mean]) {
-				sub = Arrays.copyOfRange(arr, mean + 1, arr.length);
-				binarySearch(sub);
-			}
-		}
+        int mid = left + ((right - left) / 2);
+        if ( element == array[mid] ) {
+            return true;
+        } else if ( element < array[mid] ) {
+            return binarySearch( array, element, left, mid - 1 );
+        } else if ( element > array[mid] ) {
+            return binarySearch( array, element, mid + 1, right );
+        }
+        return false;
+    }
 
-		return isFound;
-	}
+    public static void main( String[] args ) {
+        Integer[] array = {1, 2, 3, 5, 6, 7, 8, 9};
+        System.out.println( binarySearch( array, 7, 0, array.length - 1 ) );
+    }
 
 }
