@@ -19,30 +19,17 @@ public class Anagram {
 		System.out.println(a.anagram("3456", "3465"));
 	}
 	
-	/**
-	 * Anagram.
-	 *
-	 * @param str1 the str 1
-	 * @param str2 the str 2
-	 * @return true, if successful
-	 */
-	public boolean anagram(String str1, String str2) {
-		boolean isAnagram = false;
-		List<String> list1 = new ArrayList<String>();
-		List<String> list2 = new ArrayList<String>();
-		
-		for (char c1 : str1.toCharArray()) {
-			list1.add(String.valueOf(c1));
-		}
-		for (char c1 : str1.toCharArray()) {
-			list2.add(String.valueOf(c1));
-		}
-		Collections.sort(list1);
-		Collections.sort(list2);
-
-		if (list1.equals( list2))
-			isAnagram = true;
-		return isAnagram;
-	}
+	private static boolean mostRepeated( String s1, String s2 ) {
+        LinkedList<String> list = new LinkedList<>( Arrays.asList( s1.split( "" ) ) );
+        for ( String s : s2.split( "" ) ) {
+            if ( list.contains( s ) ) {
+                list.remove(s);
+            }
+            else {
+                return false;
+            }
+        }
+        return list.size() == 0;
+    }
 
 }
