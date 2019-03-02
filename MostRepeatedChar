@@ -1,0 +1,28 @@
+/* Most repeated chars in a given string */
+
+public static void main( String[] args ) {
+    String str = "most number of repeated chars b b";
+    System.out.println( mostRepeated( str ) );
+}
+
+private static Integer mostRepeated( String str ) {
+    str = str.replace( " ", "" );
+    String[] arr = str.split( "" );
+    Map<String, Integer> map = new HashMap<>();
+    for ( int i = 0; i < arr.length - 1; i++ ) {
+        if ( map.containsKey( arr[i] ) ) {
+            map.replace( arr[i], map.get( arr[i] ), map.get( arr[i] ) + 1 );
+        } else {
+            map.put( arr[i], 1 );
+        }
+    }
+    System.out.println( map );
+
+    int largest = 0;
+    for( Map.Entry<String, Integer> entry : map.entrySet() ){
+        if(entry.getValue() > largest){
+            largest = entry.getValue();
+        }
+    }
+    return largest;
+}
