@@ -1,0 +1,16 @@
+public static void main( String[] args ) {
+    System.out.println( commonChars( new String[] {"something", "nothing", "everything"} ) );
+}
+
+private static Set<String> commonChars( String[] arr ) {
+    String[] str = arr[0].replace( " ", "" ).split( "" );
+    Set<String> hashSet = new HashSet<>( Arrays.asList( str ) );
+    for ( String inputString : arr ) {
+        for ( String character : str ) {
+            if ( !inputString.contains( character ) ) {
+                hashSet.remove( character );
+            }
+        }
+    }
+    return hashSet;
+}
