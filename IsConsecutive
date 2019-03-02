@@ -1,0 +1,27 @@
+Find is numbers in a given array are Consecutive wo any duplicates
+
+public static void main( String[] args ) {
+    System.out.println( checkForConsecutive( new Integer[] {42, 42, 45, 46, 44} ) );
+}
+
+private static boolean checkForConsecutive( Integer[] arr ) {
+    boolean is = false;
+    int max = arr[0];
+    int min = arr[0];
+    List<Integer> list = new ArrayList<>();
+    for ( Integer i : arr ) {
+        if ( i > max ) {
+            max = i;
+        } else if ( i < min ) {
+            min = i;
+        }
+        if ( list.contains( i ) ) {
+            break;
+        } else {
+            list.add( i );
+        }
+    }
+    if ( max - min + 1 == arr.length )
+        is = true;
+    return is;
+}
