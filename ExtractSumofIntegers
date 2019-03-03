@@ -1,0 +1,25 @@
+Extract and return Sum of integers from a string
+
+public static void main( String[] args ) {
+    System.out.println( sumOfIntegers( "sjaskdas10dns20mh31" ) );
+}
+
+private static Long sumOfIntegers( String str ) {
+    String integers = "0123456789";
+    String[] arr = str.split( "" );
+    long sum = 0;
+    StringBuilder tmp;
+    for ( int i = 0; i < arr.length - 1; i++ ) {
+        int n = 1;
+        if ( integers.contains( arr[i] ) ) {
+            tmp = new StringBuilder( arr[i] );
+            while ( (i + n) < arr.length - 1 && integers.contains( arr[i + n] ) ) {
+                tmp.append( arr[i + n] );
+                n++;
+            }
+            i = i + n;
+            sum += Long.parseLong( tmp.toString() );
+        }
+    }
+    return sum;
+}
