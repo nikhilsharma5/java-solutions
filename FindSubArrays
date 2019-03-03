@@ -1,0 +1,40 @@
+Find sub arrays from a given array of integers (where sub array start and end with 1)
+
+public static void main( String[] args ) {
+    System.out.println( findSubArrays( new Integer[] {1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1} ) );
+}
+
+private static List<List<Integer>> findSubArrays( Integer[] arr ) {
+    List<List<Integer>> ll = new ArrayList<>();
+    int length = arr.length;
+    List<Integer> tmp = new ArrayList<>();
+    for ( int i = 0; i < arr.length - 1; i++ ) {
+        int n = 1;
+        int j = i;
+        if ( arr[j].equals( 1 ) ) {
+            tmp.add( 0, arr[j] );
+            while ( (j + n) <= arr.length - 1 ) {
+                if ( arr[j + n] == (0) ) {
+                    tmp.add( arr[j + n] );
+                    n++;
+                } else if ( arr[j + n] == (1) ) {
+                    tmp.add( arr[j + n] );
+                    n++;
+                    if ( !ll.contains( tmp ) ) {
+                        ll.add( tmp );
+                        if ( (j + n) == length ) {
+                            tmp = new ArrayList<>();
+                            n = 1;
+                            break;
+                        }
+                        tmp = new ArrayList<>();
+                        n = 1;
+                        tmp.add( 0, arr[j] );
+                    }
+                }
+            }
+            j = j + n;
+        }
+    }
+    return ll;
+}
